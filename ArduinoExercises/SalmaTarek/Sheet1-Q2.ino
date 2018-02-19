@@ -14,9 +14,9 @@ void loop() {
     digitalWrite(LED[x],HIGH); //bouncing from Left to Right : 4,5,6,7
     delay(1000); //1 second between each bounce
   }
-  for(x = 3; x >= 0; x--)
+  for(x = 2; x >= 0; x--)
   {
-    digitalWrite(LED[x],HIGH); //bouncing from right to left 7,6,5,4
+    digitalWrite(LED[x],HIGH); //bouncing from right to left 6,5,4
     delay(1000); //1 second delay between each bounce
   }
 }
