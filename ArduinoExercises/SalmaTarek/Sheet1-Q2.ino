@@ -13,10 +13,12 @@ void loop() {
   {
     digitalWrite(LED[x],HIGH); //bouncing from Left to Right : 4,5,6,7
     delay(1000); //1 second between each bounce
+    digitalWrite(LED[x],LOW); //Turns The LED OFF
   }
   for(x = 2; x >= 0; x--)
   {
     digitalWrite(LED[x],HIGH); //bouncing from right to left 6,5,4
     delay(1000); //1 second delay between each bounce
+    digitalWrite(LED[x],LOW); //Turns The LED OFF
   }
 }
