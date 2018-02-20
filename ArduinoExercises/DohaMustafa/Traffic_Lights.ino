@@ -11,7 +11,7 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(greenledPin,HIGH); //the green light is on for  8secs and then goes off
+  digitalWrite(greenledPin,HIGH); //the green light is on for 8 secs and then goes off
   delay(8000);
   digitalWrite(greenledPin,LOW);
   
@@ -22,7 +22,7 @@ void loop() {
     digitalWrite(yellowledPin,LOW);
   }
   
-  digitalWrite(redledPin,HIGH); //red light blinks for 8 secs and then goes off
+  digitalWrite(redledPin,HIGH); //red light is on for 8 secs and then goes off
   delay(8000);
   digitalWrite(redledPin,LOW);
 }
