@@ -9,7 +9,8 @@ Avoiding obstacles, line following, a set of sensors,.. etc.
 
 Detailed description of the car will be added in the wiki when we finish each phase of the implementation.
 
-Team Members:
+# Team Members:
+
 Mohammad Okasha
 
 Ahmad Abdelhalim
