@@ -11,11 +11,19 @@ Detailed description of the car will be added in the wiki when we finish each ph
 
 Team Members:
 Mohammad Okasha
+
 Ahmad Abdelhalim
+
 Salma Tarek
+
 Fatema Mubarak
+
 Salma Hosam
+
 Mariam El-Sayed
+
 Doha Mustafa
+
 Eman Mahmoud
+
 Eman Mokhtar
