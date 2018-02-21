@@ -1,0 +1,14 @@
+int LED = 7;
+int Ton = 2000;
+int Toff = 6000;
+void setup() {
+  pinMode(LED,OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED,HIGH);
+  delay(Ton);
+  digitalWrite(LED,LOW);
+  delay(Toff);
+
+}
