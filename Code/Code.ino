@@ -43,5 +43,3 @@ digitalWrite(B2, LOW);
 digitalWrite(A1, LOW);
 digitalWrite(B1, LOW);
 }
-
-
