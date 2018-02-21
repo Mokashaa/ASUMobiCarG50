@@ -32,3 +32,16 @@ void Left () {
   digitalWrite(A2, LOW);
   digitalWrite(B2, LOW);  
 }
+
+//function to turn the car to the Right (sharp angle)
+void Right ()
+{
+analogWrite(ENA, 255);
+analogWrite(ENA, 255);
+digitalWrite(A2, HIGH);
+digitalWrite(B2, LOW);
+digitalWrite(A1, LOW);
+digitalWrite(B1, LOW);
+}
+
+
