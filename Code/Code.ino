@@ -57,7 +57,7 @@ void Forward ()
  
 
 
-void Backword ()
+void Backward ()
 {
  
   analogWrite(ENA,255);
