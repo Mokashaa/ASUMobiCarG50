@@ -46,12 +46,12 @@ digitalWrite(B1, LOW);
 
 void Forward ()
 {
-  analogWrite(ENA,255);
-  analogWrite(ENA,255);
+  analogWrite(ENA, 255);
+  analogWrite(ENA, 255);
   //turning the two front motors A1,A2 ON
-  digitalWrite(A1,HIGH);
-  digitalWrite(B1,LOW);
-  digitalWrite(A2,HIGH);
-  digitalWrite(B2,LOW);
+  digitalWrite(A1, HIGH);
+  digitalWrite(B1, LOW);
+  digitalWrite(A2, HIGH);
+  digitalWrite(B2, LOW);
 }
  
