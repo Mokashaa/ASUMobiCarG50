@@ -55,3 +55,17 @@ void Forward ()
   digitalWrite(B2, LOW);
 }
  
+
+
+void Backword ()
+{
+ 
+  analogWrite(ENA,255);
+  analogWrite(ENB,255);
+  
+  digitalWrite(A1,LOW);
+  digitalWrite(B1,HIGH);
+  digitalWrite(A2,LOW);
+  digitalWrite(B2,HIGH);
+  
+}
