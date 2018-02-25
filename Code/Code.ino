@@ -20,7 +20,7 @@ void setup() {
 void loop() {
    // put your main code here, to run repeatedly:
  }
-
+ // salma tarek
 void Left () {
   //function to turn the car to the left (sharp angle)
   analogWrite(ENA, 255); //adjusting the speed to the highest value
@@ -32,6 +32,15 @@ void Left () {
   digitalWrite(A2, LOW);
   digitalWrite(B2, LOW);  
 }
+// Eman Mahmoud
+//function to turn the car to the left ( sharp angle )
+void Left (){
+  analogWrite(ENA, 255);
+  analogWrite(ENB, 255);
+  digitalWrite(A1, HIGH );
+  digitalWrite(B1,LOW );
+  digitalWrite(A2,LOW );
+  digitalWrite(B2, LOW);
 
 //function to turn the car to the Right (sharp angle)
 void Right ()
