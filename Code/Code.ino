@@ -56,7 +56,7 @@ digitalWrite(B1, LOW);
 void Forward ()
 {
   analogWrite(ENA, 255);
-  analogWrite(ENA, 255);
+  analogWrite(ENB, 255);
   //turning the two front motors A1,A2 ON
   digitalWrite(A1, HIGH);
   digitalWrite(B1, LOW);
@@ -81,7 +81,7 @@ void Backward ()
 void Forward_Right ()
 {
   analogWrite(ENA, 255);
-  analogWrite(ENA, 255);
+  analogWrite(ENB, 255);
   //turning the front-left motor and the back-right motor ON
   digitalWrite(A1, LOW);
   digitalWrite(B1, HIGH);
