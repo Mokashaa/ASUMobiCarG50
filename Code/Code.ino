@@ -88,23 +88,15 @@ void Forward_Right ()
   digitalWrite(A2, HIGH);
   digitalWrite(B2, LOW);
 }
-// salma hosam
-void Right () 
-{
-  analogWrite(ENA,255) ;
-  analogWrite(ENB, 255);
-  digitalWrite(A2,HIGH);
-  digitalWrite(B2,LOW);
-  digitalWrite(A1,LOW);
-  digitalWrite(B1,LOW); 
-}
-void backwardleft () 
-{
-   analogWrite(ENA,255) ;
-  analogWrite(ENB, 255);
-  digitalWrite(A2,LOW);
-  digitalWrite(B2,LOW);
-  digitalWrite(A1,HIGH);
-  digitalWrite(B1,LOW);
-}
-  
+//mariam elsayed 
+  void Forward_left()
+  {
+    analogWrite(ENA, 255);
+    analogWrite(ENB, 255);
+  //forward left turning the car slightly to the left 
+    // right motors on while left are off
+     digitalWrite(A1, HIGH);
+     digitalWrite(B1, LOW); 
+     digitalWrite(A2, LOW);
+     digitalWrite(B2, LOW);
+
