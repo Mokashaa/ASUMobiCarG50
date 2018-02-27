@@ -100,3 +100,17 @@ void Forward_Right ()
      digitalWrite(A2, LOW);
      digitalWrite(B2, LOW);
 
+  }
+  
+  //Ganz
+  void Backward (int i) {
+    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(A1, LOW);
+    digitalWrite(B1, HIGH);  // setting the motors to go backward 
+    
+    digitalWrite(A2, LOW);
+    digitalWrite(B2, HIGH);   // setting the motors to go backward   
+  }
+  
