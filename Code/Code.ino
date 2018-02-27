@@ -78,3 +78,15 @@ void Backward ()
   digitalWrite(B2,HIGH);
   
 }
+void Forward_Right ()
+{
+  analogWrite(ENA, 255);
+  analogWrite(ENA, 255);
+  //turning the front-left motor and the back-right motor ON
+  digitalWrite(A1, LOW);
+  digitalWrite(B1, HIGH);
+  digitalWrite(A2, HIGH);
+  digitalWrite(B2, LOW);
+}
+  
+  
