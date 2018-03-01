@@ -55,7 +55,7 @@ void Left (){
   digitalWrite(A2,LOW );
   digitalWrite(B2, LOW);
 
-//function to turn the car to the Right (sharp angle)
+//Fatema Mubarak
 void Right ()
 {
 analogWrite(ENA, 255);
@@ -65,6 +65,17 @@ digitalWrite(B2, LOW);
 digitalWrite(A1, LOW);
 digitalWrite(B1, LOW);
 }
+
+ void Backward_Right ()
+ {
+analogWrite(ENA, 255);
+analogWrite(ENB, 255);
+analogWrite(A1, 120);
+analogWrite(B1, 0);
+analogWrite(A2, 0);
+analogWrite(B2, 255);
+}
+ 
 
 void Forward ()
 {
