@@ -32,6 +32,14 @@ void Left () {
   digitalWrite(A2, LOW);
   digitalWrite(B2, LOW);  
 }
+void BackwardRight () {
+  analogWrite(ENA, 255);
+  analogWrite(ENB, 255);
+  analogWrite(A1, 0);
+  analogWrite(B1, 120);
+  analogWrite(A2, 0);
+  analogWrite(B2, 255);
+}
 // Eman Mahmoud
 //function to turn the car to the left ( sharp angle )
 void Left (){
