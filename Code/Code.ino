@@ -20,6 +20,7 @@ void setup() {
 void loop() {
    // put your main code here, to run repeatedly:
  }
+
  // salma tarek
 void Left () {
   //function to turn the car to the left (sharp angle)
@@ -35,11 +36,15 @@ void Left () {
 void BackwardRight () {
   analogWrite(ENA, 255);
   analogWrite(ENB, 255);
+  //Right motors rotate backwards slowly
   analogWrite(A1, 0);
   analogWrite(B1, 120);
+  //Left motors rotate backwards with a higher speed
   analogWrite(A2, 0);
   analogWrite(B2, 255);
 }
+
+
 // Eman Mahmoud
 //function to turn the car to the left ( sharp angle )
 void Left (){
