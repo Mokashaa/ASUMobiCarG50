@@ -114,3 +114,13 @@ void Forward_Right ()
     digitalWrite(B2, HIGH);   // setting the motors to go backward   
   }
   
+ //Eman Mahmoud 
+  void Backward_Left() {
+    analogWrite(ENA, 255);
+    analogWrite(ENB, 255);
+    digitalWrite(A1, LOW);
+    digitalWrite(A2, HIGH);
+    digitalWrite(B1, HIGH);
+    digitalWrite(B2, LOW);
+  }
+  
