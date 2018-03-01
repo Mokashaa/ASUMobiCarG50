@@ -127,6 +127,18 @@ void Forward_Right ()
     digitalWrite(B2, HIGH);   // setting the motors to go backward   
   }
   
+  void Forward_Right (int i) {
+    analogWrite(ENA, 255); // 
+    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i  from 0-255 could be so sharp by zero or with curve by increasing i
+    
+    digitalWrite(A1, HIGH);
+    digitalWrite(B1, LOW);  // setting the motors to go backward 
+    
+    digitalWrite(A2, HIGH);
+    digitalWrite(B2, LOW);   // setting the motors to go backward   
+    
+  }
+  
  //Eman Mahmoud 
   void Backward_Left() {
     analogWrite(ENA, 255);
