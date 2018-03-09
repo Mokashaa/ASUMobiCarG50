@@ -84,7 +84,7 @@ else if ( value == 'C')
   }
    
 
-else if ( value == ' ' )
+else if ( value == 'S' )
   {
     Stop ();
     }
