@@ -1,173 +1,185 @@
-char order;
-int A1 = ; //A1 is the 1st right motors pin
-int B1 = ; //B1 is the 2nd right motors pin
-int A2 = ; //A2 is the 1st left motors pin
-int B2 = ; //B2 is the 2nd left motors pin
+int RMotor1= 1 ; //RMotor1 is the 1st right motors pin
+int RMotor2 = 2; //RMotor2 is the 2nd right motors pin
+int LMotor1 = 3; //LMotor1 is the 1st left motors pin
+int LMotor2 = 4; //LMotor2 is the 2nd left motors pin
+int ENA = 4;
+int ENB = 4;
+char value ;
 
-//Assuming that when A1,A2 are HIGH and B1,B2 are LOW the wheels move forward
+//Assuming that when RMotor1,LMotor1 are HIGH and RMotor2,LMotor2 are LOW the wheels move forward
 
 
 
 void setup() {
+  Serial.begin (9600);
+
+
   pinMode(ENA, OUTPUT); //Enable pins
   pinMode(ENB, OUTPUT); //Enable pins
-  pinMode(A1, OUTPUT);
-  pinMode(B1, OUTPUT);
-  pinMode(A2, OUTPUT);
-  pinMode(B2, OUTPUT);
+  pinMode(RMotor1, OUTPUT);
+  pinMode(RMotor2, OUTPUT);
+  pinMode(LMotor1, OUTPUT);
+  pinMode(LMotor2, OUTPUT);
 }
+
+//Prototypes
+void Forward (int i);
+void Left (int i);
+void Right (int i) ;
+void Backward (int i) ;
+void BackwardRight (int i , int n) ;
+void BackwardLeft (int i , int n) ;
+void ForwardRight (int i , int n) ;
+void BackwardLeft (int i , int n) ;
+void Stop () ;
 
 void loop() {
    // put your main code here, to run repeatedly:
- }
+   
 
- // salma tarek
-void Left () {
-  //function to turn the car to the left (sharp angle)
-  analogWrite(ENA, 255); //adjusting the speed to the highest value
-  analogWrite(ENB, 255); //adjusting the speed to the highest value
-  //turning the right motors on
-  digitalWrite(A1, HIGH); 
-  digitalWrite(B1, LOW);
-  //turning the left motors off
-  digitalWrite(A2, LOW);
-  digitalWrite(B2, LOW);  
-}
-void BackwardRight () {
-  analogWrite(ENA, 255);
-  analogWrite(ENB, 255);
-  //Right motors rotate backwards slowly
-  analogWrite(A1, 0);
-  analogWrite(B1, 120);
-  //Left motors rotate backwards with a higher speed
-  analogWrite(A2, 0);
-  analogWrite(B2, 255);
-}
+   value=Serial.read(); 
+   
+   Serial.println(value);
+   
+if(value == 'F')
+   {
+     Forward (255);
+    }
 
+else if ( value == 'B')
+    {
+     Backward (255);
+     }
 
-// Eman Mahmoud
-//function to turn the car to the left ( sharp angle )
-void Left (){
-  analogWrite(ENA, 255);
-  analogWrite(ENB, 255);
-  digitalWrite(A1, HIGH );
-  digitalWrite(B1,LOW );
-  digitalWrite(A2,LOW );
-  digitalWrite(B2, LOW);
-
-//Fatema Mubarak
-void Right ()
+else if ( value == 'L')
 {
-analogWrite(ENA, 255);
-analogWrite(ENA, 255);
-digitalWrite(A2, HIGH);
-digitalWrite(B2, LOW);
-digitalWrite(A1, LOW);
-digitalWrite(B1, LOW);
-}
-
- void Backward_Right ()
- {
-analogWrite(ENA, 255);
-analogWrite(ENB, 255);
-analogWrite(A1, 120);
-analogWrite(B1, 0);
-analogWrite(A2, 0);
-analogWrite(B2, 255);
-}
- 
-
-void Forward ()
-{
-  analogWrite(ENA, 255);
-  analogWrite(ENB, 255);
-  //turning the two front motors A1,A2 ON
-  digitalWrite(A1, HIGH);
-  digitalWrite(B1, LOW);
-  digitalWrite(A2, HIGH);
-  digitalWrite(B2, LOW);
-}
- 
-
-
-void Backward ()
-{
- 
-  analogWrite(ENA,255);
-  analogWrite(ENB,255);
-  
-  digitalWrite(A1,LOW);
-  digitalWrite(B1,HIGH);
-  digitalWrite(A2,LOW);
-  digitalWrite(B2,HIGH);
-  
-}
-void Forward_Right ()
-{
-  analogWrite(ENA, 255);
-  analogWrite(ENB, 255);
-  //turning the front-left motor and the back-right motor ON
-  digitalWrite(A1, LOW);
-  digitalWrite(B1, HIGH);
-  digitalWrite(A2, HIGH);
-  digitalWrite(B2, LOW);
-}
-//mariam elsayed 
-  void Forward_left()
-  {
-    analogWrite(ENA, 255);
-    analogWrite(ENB, 255);
-  //forward left turning the car slightly to the left 
-    // right motors on while left are off
-     digitalWrite(A1, HIGH);
-     digitalWrite(B1, LOW); 
-     digitalWrite(A2, LOW);
-     digitalWrite(B2, LOW);
-
+  Left(255) ;
   }
+
+else if ( value == 'R')
+{
+  Right(255);
+  }
+   
+
+else if ( value == 'K')
+   { 
+    BackwardRight (255,120);
+    }
   
-  //Ganz
-  void Backward (int i) {
+else if ( value == 'M')
+   {
+    ForwardRight (120,255);
+    }
+
+    
+else if ( value == 'J')
+   {
+    BackwardLeft (255,120);
+    }
+
+else if ( value == 'C')
+  {
+  BackwardRight (120,255);
+  }
+   
+
+else if ( value == ' ' )
+  {
+    Stop ();
+    }
+ }
+ 
+ void Forward (int i) {
     analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
     analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
     
-    digitalWrite(A1, LOW);
-    digitalWrite(B1, HIGH);  // setting the motors to go backward 
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
     
-    digitalWrite(A2, LOW);
-    digitalWrite(B2, HIGH);   // setting the motors to go backward   
-  }
-  
-  void Forward_Right (int i) {
-    analogWrite(ENA, 255); // 
-    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i  from 0-255 could be so sharp by zero or with curve by increasing i
-    
-    digitalWrite(A1, HIGH);
-    digitalWrite(B1, LOW);  // setting the motors to go backward 
-    
-    digitalWrite(A2, HIGH);
-    digitalWrite(B2, LOW);   // setting the motors to go backward   
-    
-  }
-  
- //Eman Mahmoud 
-  void Backward_Left() {
-    analogWrite(ENA, 255);
-    analogWrite(ENB, 255);
-    digitalWrite(A1, LOW);
-    digitalWrite(A2, HIGH);
-    digitalWrite(B1, HIGH);
-    digitalWrite(B2, LOW);
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go backward
+    Serial.println('F');   
   }
  
-
-void Forward_left ()
-{
-  analogWrite(ENA,255);
-  analogWrite(ENB,255);
-  
-  digitalWrite(A1,HIGH);
-  digitalWrite(B1,LOW);
-  digitalWrite(A2,HIGH);
-  digitalWrite(B2,LOW);
-} 
+ 
+ void Backward (int i) {
+    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(RMotor1, LOW);
+    digitalWrite(RMotor2, HIGH);  // setting the motors to go backward 
+    
+    digitalWrite(LMotor1, LOW);
+    digitalWrite(LMotor2, HIGH);   // setting the motors to go backward   
+  }
+  void Left (int i) {
+    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
+    
+    digitalWrite(LMotor1, LOW);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+  }
+  void Right (int i) {
+    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(RMotor1, LOW);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+  }
+  void ForwardLeft (int i , int n) {
+    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, n);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(RMotor1 ,HIGH);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+  }
+  void ForwardRight (int i , int n) {
+    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, n);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+  }
+  void BackwardLeft (int i ,int n) {
+    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, n);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(RMotor1, LOW);
+    digitalWrite(RMotor2, HIGH);  // setting the motors to go backward 
+    
+    digitalWrite(LMotor1, LOW);
+    digitalWrite(LMotor2, HIGH);   // setting the motors to go backward   
+  }
+  void BackwardRight (int i , int n) {
+    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, n);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(RMotor1, LOW);
+    digitalWrite(RMotor2, HIGH);  // setting the motors to go backward 
+    
+    digitalWrite(LMotor1, LOW);
+    digitalWrite(LMotor2, HIGH);   // setting the motors to go backward   
+  }
+  void Stop () {
+    analogWrite(ENA, 255); // to set the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, 255);  // to set the speed of the 2nd motor by i ..
+    
+    digitalWrite(RMotor1, LOW);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
+    
+    digitalWrite(LMotor1, LOW);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+  }
