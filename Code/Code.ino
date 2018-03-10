@@ -30,7 +30,7 @@ void Backward (int i) ;
 void BackwardRight (int i , int n) ;
 void BackwardLeft (int i , int n) ;
 void ForwardRight (int i , int n) ;
-void BackwardLeft (int i , int n) ;
+void ForwardLeft (int i , int n) ;
 void Stop () ;
 
 void loop() {
@@ -42,144 +42,152 @@ void loop() {
    Serial.println(value);
    
 if(value == 'F')
-   {
-     Forward (255);
-    }
+{
+  Forward (255);
+}
 
 else if ( value == 'B')
-    {
-     Backward (255);
-     }
+{
+  Backward (255);
+}
 
 else if ( value == 'L')
 {
   Left(255) ;
-  }
+}
 
 else if ( value == 'R')
 {
   Right(255);
-  }
+}
    
-
-else if ( value == 'K')
-   { 
-    BackwardRight (255,120);
-    }
+else if ( value == 'N')
+{ 
+  ForwardLeft (255,120);
+}
   
 else if ( value == 'M')
-   {
-    ForwardRight (120,255);
-    }
-
+{
+  ForwardRight (120,255);
+}
     
-else if ( value == 'J')
-   {
-    BackwardLeft (255,120);
-    }
+else if ( value == 'P')
+{
+  BackwardLeft (255,120);
+}
 
-else if ( value == 'C')
-  {
+else if ( value == 'O')
+{
   BackwardRight (120,255);
-  }
+}
    
-
 else if ( value == 'S' )
-  {
-    Stop ();
-    }
- }
+{
+  Stop ();
+}
+}
  
- void Forward (int i) {
-    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
-    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
-    
+ void Forward (int i)
+ {
+    analogWrite(ENA, i); //setting the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, i);  //setting the speed of the 2nd motor by i from 0-255
+    //Setting the Motors to go forward:
     digitalWrite(RMotor1, HIGH);
-    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
-    
+    digitalWrite(RMotor2, LOW);
+    //Setting the motors to go forward
     digitalWrite(LMotor1, HIGH);
-    digitalWrite(LMotor2, LOW);   // setting the motors to go backward
+    digitalWrite(LMotor2, LOW);
     Serial.println('F');   
   }
  
- 
- void Backward (int i) {
-    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
-    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
-    
+ void Backward (int i)
+ {
+    analogWrite(ENA, i); //setting the speed of the 1st motor by i from 0-255
+    analogWrite(ENB, i);  //setting the speed of the 2nd motor by i from 0-255
+    //Setting the motors to go backwards:
     digitalWrite(RMotor1, LOW);
-    digitalWrite(RMotor2, HIGH);  // setting the motors to go backward 
-    
+    digitalWrite(RMotor2, HIGH); 
+    //Setting the motors to go backwards:
     digitalWrite(LMotor1, LOW);
-    digitalWrite(LMotor2, HIGH);   // setting the motors to go backward   
+    digitalWrite(LMotor2, HIGH);   
   }
-  void Left (int i) {
-    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
-    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
-    
+
+  void Left (int i)
+  {
+    analogWrite(ENA, i); //setting the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, i);  //setting the speed of the 2nd motor by i from 0-255
+    //setting the motors to go forward
     digitalWrite(RMotor1, HIGH);
-    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
-    
+    digitalWrite(RMotor2, LOW);
+    //stopping the motors
     digitalWrite(LMotor1, LOW);
-    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+    digitalWrite(LMotor2, LOW);   
   }
-  void Right (int i) {
-    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
-    analogWrite(ENB, i);  // to set the speed of the 2nd motor by i ..
-    
+
+  void Right (int i) 
+  {
+    analogWrite(ENA, i); //setting the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, i);  //setting the speed of the 2nd motor by i from 0-255
+    //stopping the motors
     digitalWrite(RMotor1, LOW);
-    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
-    
+    digitalWrite(RMotor2, LOW);
+    //setting the motors to go forward
     digitalWrite(LMotor1, HIGH);
-    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+    digitalWrite(LMotor2, LOW);   
   }
+
   void ForwardLeft (int i , int n) {
-    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
-    analogWrite(ENB, n);  // to set the speed of the 2nd motor by i ..
-    
+    analogWrite(ENA, i); //setting the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, n);  //setting the speed of the 2nd motor by n from 0-255
+    //speed n will be lower than speed i
     digitalWrite(RMotor1 ,HIGH);
-    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
+    digitalWrite(RMotor2, LOW);
     
     digitalWrite(LMotor1, HIGH);
-    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+    digitalWrite(LMotor2, LOW);   
   }
+
   void ForwardRight (int i , int n) {
-    analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
-    analogWrite(ENB, n);  // to set the speed of the 2nd motor by i ..
-    
+    analogWrite(ENA, i); //setting the speed of the 1st motor by i  from 0-255
+    analogWrite(ENB, n);  //setting the speed of the 2nd motor by n from 0-255
+    //speed i will be lower than speed n
     digitalWrite(RMotor1, HIGH);
-    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
+    digitalWrite(RMotor2, LOW); 
     
     digitalWrite(LMotor1, HIGH);
-    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+    digitalWrite(LMotor2, LOW);  
   }
+
   void BackwardLeft (int i ,int n) {
     analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
-    analogWrite(ENB, n);  // to set the speed of the 2nd motor by i ..
-    
+    analogWrite(ENB, n);  // to set the speed of the 2nd motor by n from 0-255
+    //speed n will be lower than speed i
     digitalWrite(RMotor1, LOW);
-    digitalWrite(RMotor2, HIGH);  // setting the motors to go backward 
+    digitalWrite(RMotor2, HIGH);
     
     digitalWrite(LMotor1, LOW);
-    digitalWrite(LMotor2, HIGH);   // setting the motors to go backward   
+    digitalWrite(LMotor2, HIGH);  
   }
+
   void BackwardRight (int i , int n) {
     analogWrite(ENA, i); // to set the speed of the 1st motor by i  from 0-255
     analogWrite(ENB, n);  // to set the speed of the 2nd motor by i ..
-    
+    //speed i will be lower than n
     digitalWrite(RMotor1, LOW);
     digitalWrite(RMotor2, HIGH);  // setting the motors to go backward 
     
     digitalWrite(LMotor1, LOW);
     digitalWrite(LMotor2, HIGH);   // setting the motors to go backward   
   }
+
   void Stop () {
-    analogWrite(ENA, 255); // to set the speed of the 1st motor by i  from 0-255
-    analogWrite(ENB, 255);  // to set the speed of the 2nd motor by i ..
+    //stopping both motors
+    analogWrite(ENA, 0);
+    analogWrite(ENB, 0);
     
     digitalWrite(RMotor1, LOW);
-    digitalWrite(RMotor2, LOW);  // setting the motors to go backward 
+    digitalWrite(RMotor2, LOW); 
     
     digitalWrite(LMotor1, LOW);
-    digitalWrite(LMotor2, LOW);   // setting the motors to go backward   
+    digitalWrite(LMotor2, LOW);   
   }
