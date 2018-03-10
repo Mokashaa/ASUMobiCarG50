@@ -1,9 +1,9 @@
-int RMotor1= 1 ; //RMotor1 is the 1st right motors pin
-int RMotor2 = 2; //RMotor2 is the 2nd right motors pin
-int LMotor1 = 3; //LMotor1 is the 1st left motors pin
-int LMotor2 = 4; //LMotor2 is the 2nd left motors pin
-int ENA = 4;
-int ENB = 4;
+int RMotor1= 10 ; //RMotor1 is the 1st right motors pin
+int RMotor2 = 7; //RMotor2 is the 2nd right motors pin
+int LMotor1 = 5; //LMotor1 is the 1st left motors pin
+int LMotor2 = 6; //LMotor2 is the 2nd left motors pin
+int ENA = 11;
+int ENB = 3;
 char value ;
 
 //Assuming that when RMotor1,LMotor1 are HIGH and RMotor2,LMotor2 are LOW the wheels move forward
