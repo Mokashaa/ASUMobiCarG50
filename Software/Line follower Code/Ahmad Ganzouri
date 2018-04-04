@@ -3,3 +3,5 @@ it depends on the ir sensor which tells it's black or white
 Source of a project uses 3 ir sensor to do it : https://create.arduino.cc/projecthub/16336/line-follower-robot-using-arduino-5f5698
 
 found that for more accuracy of driving we should use PID Algorithm. 
+with this algorithm we consider the error of getting off the track and feedback the speed of motors to get the car back to the track
+Link: https://create.arduino.cc/projecthub/mjrobot/line-follower-robot-pid-control-android-setup-e5113a
