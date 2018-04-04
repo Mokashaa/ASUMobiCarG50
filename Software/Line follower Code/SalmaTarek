@@ -17,3 +17,10 @@ which will lessen the complexity of the code.
 
 3-Line tracker sensor (5 IR): https://store.fut-electronics.com/collections/light-infrared-sound/products/advanced-line-finder-kit
 in this option we'll use only one sensor, this sensor contains 5 IRs so it may offer higher accuracy
+
+for the coding we must consider the following cases:
+-Sharp Left/Right
+-Forward Left/Right (not sharp)
+-Forward
+-Gaps
+-T breaks and X breaks (mainly intersecting tracks)
