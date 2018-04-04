@@ -1,0 +1,19 @@
+for the design; it's better to use two wheels and a caster wheel instead of 4 wheels.
+
+3 IR sensors would be good; one sensor to check the right side, one sensor to check the left side, and one sensor at the middle,
+so if the left sensor returns a certain value the car would turn left, if the right sensor returns a certain value the car would turn right,
+and if the one in the middle returns a certain value the car would go straight. check this link:
+https://www.quora.com/How-can-I-build-a-simple-line-following-robot
+
+we could use IR sensors and try to program them, or we could use Line tracker sensor (which is easier as it would return a LOW/HIGH signal)
+so basically we have 3 options:
+
+1-IR sensor (emitter and reciever): https://store.fut-electronics.com/collections/light-infrared-sound/products/infrared-object-detection-sensor
+in this option we'd use 3 IR sensors but IR sensors won't return HIGH/LOW signals, so it would complicate the code a little bit.
+
+2-Line tracker sensor (ONE IR): https://store.fut-electronics.com/collections/light-infrared-sound/products/line-tracker-finder-sensor
+in this option we'd use also 3 sensors, each sensor returns a HIGH signal if it sees 'black' and return a LOW signal if it sees 'white'
+which will lessen the complexity of the code.
+
+3-Line tracker sensor (5 IR): https://store.fut-electronics.com/collections/light-infrared-sound/products/advanced-line-finder-kit
+in this option we'll use only one sensor, this sensor contains 5 IRs so it may offer higher accuracy
