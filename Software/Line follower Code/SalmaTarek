@@ -24,3 +24,12 @@ for the coding we must consider the following cases:
 -Forward
 -Gaps
 -T breaks and X breaks (mainly intersecting tracks)
+
+Additional coding issues:
+we must consider the rotation of the car, the angle of rotation shouldn't be so sharp nor so wide,
+an average speed should be maintaned to achieve a proper angle of rotation.
+
+for a very accurate movement we could learn more about PID algorithm and control:
+example : https://create.arduino.cc/projecthub/mjrobot/line-follower-robot-pid-control-android-setup-e5113a
+example : https://create.arduino.cc/projecthub/kittenbot/pid-control-line-follower-robot-d4535c
+
