@@ -1,0 +1,21 @@
+https://www.youtube.com/watch?v=wbrt2ClgZik 
+this tutriol shows building a line follower RC car with an QTR-8RC Reflectance Sensor Array.
+Connections : 
+
+1) DC Motors connect to the H bridge
+2) The QTR-8RC Reflectance Sensor Connections
+
+- The Sensor VCC connect to the Arduino +5V
+- The Sensor GND connect to the Arduino Ground
+- The Sensor pin 2 connect to the Arduino Analog 0
+- The Sensor pin 3 connect to the Arduino Analog 1
+- The Sensor pin 4 connect to the Arduino Analog 2
+- The Sensor pin 5 connect to the Arduino Analog 3
+- The Sensor pin 6 connect to the Arduino Analog 4
+
+- Download the library;
+  https://github.com/pololu/qtr-sensors...
+- Rename the folder “qtr-sensors-arduino-xxxx” to “QTRSensors”
+- Drag the “QTRSensors” folder into the “libraries” directory inside your Arduino sketchbook directory
+
+4) After installing the library, restart the Arduino IDE
