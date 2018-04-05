@@ -1,8 +1,10 @@
 Making a line follower from scratch with high stability and performance:
 http://www.instructables.com/id/High-performance-Line-follower-Robot/
+i prefer using a line tracking sensor than iR sensors to assure high performance and to make coding and troubleshooting easrier  
 
 Ensuring high speed for a line follower:
 https://www.quora.com/How-do-I-ensure-maximum-speed-of-a-line-follower-robot
-
+making the car chasis made of two wheels and a bovine wheel instead of 4 wheels can make the car more stable also using the right batteries can make it faster, we can also make the chasis lighter and balance the car weight with the components used to make it more stable  
 Code :
 https://circuitdigest.com/microcontroller-projects/line-follower-robot-using-arduino
+in this link he uses 2 iR sensors one on the left and one on the right where when the two sesnors are on the white surface the car moves foward ,when the left sensor is on the black and the right one on the white it moves left and so on , the code is esy and not difficult to grasp however it isnot going to be accurate on intersections and sharp edges 
