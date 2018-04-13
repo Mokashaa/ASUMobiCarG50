@@ -1,0 +1,117 @@
+#define L 13
+#define C 12
+#define R 5
+#define RMotor1 7
+#define RMotor2 8
+#define LMotor1 9
+#define LMotor2 10
+#define ENA 6
+#define ENB 11
+int sensor[3] = {0,0,0};
+int error = 0;
+
+void setup() {
+  Serial.begin(9600);
+  
+  pinMode(ENA, OUTPUT);
+  pinMode(ENB, OUTPUT);
+  pinMode(RMotor1, OUTPUT);
+  pinMode(RMotor2, OUTPUT);
+  pinMode(LMotor1, OUTPUT);
+  pinMode(LMotor2, OUTPUT);
+  pinMode(L, INPUT);
+  pinMode(C, INPUT);
+  pinMode(R, INPUT);
+  
+}
+
+void loop() {
+
+  sensor[0]= digitalRead(L);
+  sensor[1]= digitalRead(C);
+  sensor[2]= digitalRead(R);
+  Serial.print(sensor[0] );
+  Serial.print(sensor[1] );
+  Serial.println(sensor[2] );
+
+  if(sensor[0]==0 && sensor[1]==0 && sensor[2]==0) {STOP();}
+  if(sensor[0]==0 && sensor[1]==0 && sensor[2]==1) {Forward_Right();}
+  if(sensor[0]==0 && sensor[1]==1 && sensor[2]==0) {Forward();} 
+  if(sensor[0]==0 && sensor[1]==1 && sensor[2]==1) {Right();}
+  if(sensor[0]==1 && sensor[1]==0 && sensor[2]==0) {Forward_Left();}
+  if(sensor[0]==1 && sensor[1]==1 && sensor[2]==0) {Left();}
+
+}
+
+void Forward () {
+  
+    analogWrite(ENA, 100);
+    analogWrite(ENB, 100);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go forward 
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go forward   
+}
+
+void Left () {
+    
+    analogWrite(ENA, 125);
+    analogWrite(ENB, 0);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go left
+    
+    digitalWrite(LMotor1, LOW);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go left 
+}
+
+void Right () {
+    
+    analogWrite(ENA, 0);
+    analogWrite(ENB, 125);
+    
+    digitalWrite(RMotor1, LOW);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go right
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go right 
+}
+
+void Forward_Left () {
+    
+    analogWrite(ENA, 100);
+    analogWrite(ENB, 25); 
+    
+    digitalWrite(RMotor1 ,HIGH);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go forward left
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go forward left  
+}
+
+void Forward_Right () {
+    
+    analogWrite(ENA, 25);
+    analogWrite(ENB, 100);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  // setting the motors to go forward right
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);   // setting the motors to go forward right
+}
+
+void STOP () {
+
+  analogWrite(ENA, 0);
+  analogWrite(ENB, 0);
+
+  digitalWrite(RMotor1, LOW);
+  digitalWrite(RMotor2, LOW);
+  
+  digitalWrite(LMotor1, LOW);
+  digitalWrite(LMotor2, LOW);
+}
+
