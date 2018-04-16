@@ -11,6 +11,8 @@
 #define ENB 11
 int sensor[3] = {0,0,0};
 int extrasensor[2] = {0,0};
+void Left ();
+void Right ();
 
 void setup() {
   
@@ -37,19 +39,17 @@ void loop() {
   sensor[2]= digitalRead(R);
   extrasensor[0]= digitalRead(L2);
   extrasensor[1]= digitalRead(R2);
-  Serial.print ( extrasensor[1]);
   
   if((sensor[0]==0 && sensor[1]==0 && sensor[2]==1) ||(sensor[0]==0 && sensor[1]==1 && sensor[2]==1) || (sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 1 && extrasensor[1]==0) ) {Right();}
   else if(sensor[0]==0 && sensor[1]==1 && sensor[2]==0) {Forward();} 
   else if((sensor[0]==1 && sensor[1]==0 && sensor[2]==0)|| (sensor[0]==1 && sensor[1]==1 && sensor[2]==0) || (sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 0 && extrasensor[1]==1) )  {Left();}
   else{}
-
 }
 
 void Forward () {
   
-    analogWrite(ENA, 100);
-    analogWrite(ENB, 100);
+    analogWrite(ENA, 75);
+    analogWrite(ENB, 75);
     
     digitalWrite(RMotor1, HIGH);
     digitalWrite(RMotor2, LOW);  // setting the motors to go forward 
@@ -60,23 +60,23 @@ void Forward () {
 
 void Left () {
     
-    analogWrite(ENA, 100);
-    analogWrite(ENB, 60);
+    analogWrite(ENA, 95);
+    analogWrite(ENB, 0);
     
     digitalWrite(RMotor1, HIGH);
     digitalWrite(RMotor2, LOW);  // setting the motors to go left
     
     digitalWrite(LMotor1, LOW);
-    digitalWrite(LMotor2, HIGH);   // setting the motors to go left 
+    digitalWrite(LMotor2, LOW);   // setting the motors to go left 
 }
 
 void Right () {
     
-    analogWrite(ENA, 60);
-    analogWrite(ENB, 100);
+    analogWrite(ENA, 0);
+    analogWrite(ENB, 95);
     
     digitalWrite(RMotor1, LOW);
-    digitalWrite(RMotor2, HIGH);  // setting the motors to go right
+    digitalWrite(RMotor2, LOW);  // setting the motors to go right
     
     digitalWrite(LMotor1, HIGH);
     digitalWrite(LMotor2, LOW);   // setting the motors to go right 
