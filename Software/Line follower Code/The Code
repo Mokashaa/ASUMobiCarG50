@@ -51,9 +51,9 @@ void loop() {
   { STOP();}
   else if(sensor[0]==0 && sensor[1]==0 && sensor[2]==1) {Right;}
   else if(sensor[0]==0 && sensor[1]==1 && sensor[2]==0) {Forward();} 
-  else if(sensor[0]==0 && sensor[1]==1 && sensor[2]==1) {Forward_Right();}
+  else if(sensor[0]==0 && sensor[1]==1 && sensor[2]==1) {Right();}
   else if(sensor[0]==1 && sensor[1]==0 && sensor[2]==0) {Left;}
-  else if(sensor[0]==1 && sensor[1]==1 && sensor[2]==0) {Forward_Left();}
+  else if(sensor[0]==1 && sensor[1]==1 && sensor[2]==0) {Left();}
 
 }
 
@@ -91,40 +91,4 @@ void Right () {
     
     digitalWrite(LMotor1, HIGH);
     digitalWrite(LMotor2, LOW);   // setting the motors to go right 
-}
-
-void Forward_Left () {
-    
-    analogWrite(ENA, 100);
-    analogWrite(ENB, 60); 
-    
-    digitalWrite(RMotor1 ,HIGH);
-    digitalWrite(RMotor2, LOW);  // setting the motors to go forward left
-    
-    digitalWrite(LMotor1, HIGH);
-    digitalWrite(LMotor2, LOW);   // setting the motors to go forward left  
-}
-
-void Forward_Right () {
-    
-    analogWrite(ENA, 60);
-    analogWrite(ENB, 100);
-    
-    digitalWrite(RMotor1, HIGH);
-    digitalWrite(RMotor2, LOW);  // setting the motors to go forward right
-    
-    digitalWrite(LMotor1, HIGH);
-    digitalWrite(LMotor2, LOW);   // setting the motors to go forward right
-}
-
-void STOP () {
-
-  analogWrite(ENA, 0);
-  analogWrite(ENB, 0);
-
-  digitalWrite(RMotor1, LOW);
-  digitalWrite(RMotor2, LOW);
-  
-  digitalWrite(LMotor1, LOW);
-  digitalWrite(LMotor2, LOW);
 }
