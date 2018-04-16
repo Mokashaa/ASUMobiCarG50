@@ -15,7 +15,7 @@ Detailed description of the car will be added in the wiki when we finish each ph
 
 Mohammad Okasha
 
-Ahmad Abdelhalim
+Ahmad Abd-Elhalem Mohammad 
 
 Salma Tarek
 
