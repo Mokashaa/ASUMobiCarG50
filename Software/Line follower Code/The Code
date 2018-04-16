@@ -42,12 +42,10 @@ void loop() {
   if(sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 0 && extrasensor[1]==1)
   {
     Left();
-    delay(500);
   }
   if(sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 1 && extrasensor[1]==0)
   {
     Right();
-    delay(500);
   }
   if(sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 1 && extrasensor[1]==1)
   { STOP();}
@@ -85,8 +83,8 @@ void Left () {
 
 void Right () {
     
-    analogWrite(ENA, 100);
-    analogWrite(ENB, 60);
+    analogWrite(ENA, 60);
+    analogWrite(ENB, 100);
     
     digitalWrite(RMotor1, LOW);
     digitalWrite(RMotor2, HIGH);  // setting the motors to go right
@@ -109,8 +107,8 @@ void Forward_Left () {
 
 void Forward_Right () {
     
-    analogWrite(ENA, 100);
-    analogWrite(ENB, 60);
+    analogWrite(ENA, 60);
+    analogWrite(ENB, 100);
     
     digitalWrite(RMotor1, HIGH);
     digitalWrite(RMotor2, LOW);  // setting the motors to go forward right
