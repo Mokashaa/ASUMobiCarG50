@@ -10,6 +10,7 @@ Avoiding obstacles, line following, a set of sensors,.. etc.
 Detailed description of the car will be added in the wiki when we finish each phase of the implementation.
 
 # You can watch 1st video for the car here : https://youtu.be/BuMWu1vVa2c
+# Also you can watch the video of the Line following version here : https://youtu.be/8jujmvuGttY
 
 # Team Members:
 
