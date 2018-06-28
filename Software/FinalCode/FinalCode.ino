@@ -1,22 +1,17 @@
-// Y : mode of phase 2
-// F : certain distance forward (phase 3)
-// B : certain distance backward (phase 3)
-// R : certain angle right (phase 3)
-// L : certain angle left (phase 3)
-// D : Demo Mode (phase 3)
-// f : move forward
-// b : move backwards
-// r : move right
-// l : move left
-// T : backward right
-// E : forward right
-// J : backward left
-// K : forward left
-// S : Stop 
+// O=31 : mode of phase 2
+// F=22 : certain distance forward (phase 3)
+// B=18 : certain distance backward (phase 3)
+// R=34 : certain angle right (phase 3)
+// L=28 : certain angle left (phase 3)
+// D=20 : Demo Mode (phase 3)
+// f=54 : move forward
+// b=50 : move backwards
+// r=66 : move right
+// l=60 : move left
+// s=67 : Stop 
 
 //bluetooth module variables:
-String X;
-char mode = ' ';
+unsigned int reading = 0;
 
 //Easy driving mode pins:
 int ENA = 6;
@@ -43,7 +38,6 @@ int sensor[3] = {0,0,0};
 int extrasensor[2] = {0,0};
 
 //Destination/Angle Value:
-int value = 0;
 
 void setup() {
 
@@ -78,69 +72,49 @@ void ForwardRight (int i , int n);
 void BackwardLeft (int i , int n);
 void Stop ();
 long checkpath();
-int Value();
+int Reading (int a);
 
 void loop() {
-
-  while(Serial.available() == 0){}
   
-  while(Serial.available() > 0)
-  {
-    mode = Serial.read();
-  }
-
+ reading = Reading (reading);
+ Serial.println(reading);
+ 
   //PHASE ONE:
   //Ultrasonic Part:
   distance = checkpath(); //function calculating distance
-  if (distance <= 25) //if distance less than 25 cm move back then stop
-  {
-    Backward(255);
-    delay(100);
-    Stop();
-    Serial.println ("Back");
-  }
+//  if (distance <= 25) //if distance less than 25 cm move back then stop
+//  {
+//    Backward(255);
+//   delay(100);
+//    Stop();
+// }
   
-  else 
-  {
-    if(mode == 'f')
+//else  
+//{
+     if(reading == 54)
     {      
+      Serial.println("Forward");
       Forward(255);
     }
-    else if(mode == 'b')
+    else if(reading == 50)
     {
       Backward(255);
     }
-    else if(mode == 'l')
+    else if(reading == 60)
     {
       Left(255,0);
     }
-    else if(mode == 'r')
+    else if(reading == 66)
     {
        Right(0,255);
     }
-    else if(mode == 'T')
-    {
-      BackwardRight(255,0);
-    }
-    else if(mode == 'E')
-    {
-      ForwardRight(0,255);
-    }
-    else if(mode == 'J')
-    { 
-      BackwardLeft(255,0);
-    }
-    else if(mode == 'K')
-    {
-      ForwardLeft(0,255);
-    }
-    else if (mode == 'S')
+    else if (reading == 67)
     {
       Stop();
     }
 
     //PHASE TWO:
-    else if(mode == 'Y')
+    else if(reading == 31)
     {
       sensor[0]= digitalRead(L);
       sensor[1]= digitalRead(C);
@@ -154,31 +128,31 @@ void loop() {
     }
     
     //PHASE THREE:
-    else if(mode == 'F')
+    else if(reading > 22000 && reading < 23000)
     {
-      value = Value();
-      ForwardDestination(value);
+    unsigned int  value = reading - 22000;
+      Serial.println(value);
     }
-    else if(mode == 'B')
+    else if(reading > 18000 && reading < 19000 )
     {
-      value = Value();
-      BackwardDestination(value);
+     unsigned int value = reading - 18000;
+      Serial.println(value);
     }
-    else if(mode == 'R')
+    else if(reading > 34000 && reading < 35000)
     {
-      value = Value();
-      RightAngle(value);
+     unsigned int value = reading - 34000;
+      Serial.println(value);
     }
-    else if(mode == 'L')
+    else if(reading > 28000 && reading < 29000)
     {
-      value = Value();
-      LeftAngle(value);
+     unsigned int  value = reading - 28000;
+      Serial.println(value);
     }
-    else if(mode == 'D')
+    else if(reading == 20)
     {
       //DEMO MODE
     }
-  }
+//}
 }
  
 //Functions:
@@ -311,24 +285,35 @@ long checkpath()
   
   long duration = pulseIn(ECHOPIN, HIGH);
   long distance = duration / 58.8235294 ;
-
-  Serial.print(distance);
-  Serial.println(" cm");
   
   return distance;
 }
 
 //Function to get the Value of the Distance/Angle
-int Value () 
-{
-
-  int Value = 0;
+int Reading (int a) {
+  
+  unsigned int value = 0;
+  int old = a;
+  String X = "";
+  String Number = "";
+  
+  while(Serial.available() == 0) {}
+  
   while(Serial.available() > 0)
   {
-    Value = Value*10;
-    Value = Value + (Serial.read() - '0');
-    delay(10);
+    X = X + (Serial.read() - '0') ;    
+    delay(2);
   }
-  return Value;
+  
+  for ( int i = 0 ; i <= 4 ; i++)
+  {
+    if(X[i] == '-')
+    break;
+    Number = Number + X[i];
+  }
+    
+  value = Number.toInt();
+  if (value == 0) {return old ;}
+  return value;
 }
 
