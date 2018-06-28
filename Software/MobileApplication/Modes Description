@@ -1,0 +1,8 @@
+This app can control the car through sending and receiving data from the bluetooth module..
+it has 4 modes it changes the data going through bluetooth by selecting the mode
+
+-Driving Mode: when it selected you can drive the car forward,backward,right,left and stop .. 
+-Distance: when the "cm" mode is selected you can give the car direction and distance and it will reach it.
+-Angle: when the "ANGLE" mode is selected you can give the car direction and angle and it will reach it.
+-Line Follower Mode: the car wil find the line and follow it.
+-Demo: it will make three shapes (rectangle,circle,infinity) and then it will stop.
