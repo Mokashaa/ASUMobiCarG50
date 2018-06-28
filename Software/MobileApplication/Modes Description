@@ -1,4 +1,4 @@
-This app can control the car through sending and receiving data from the bluetooth module..
+The ControlApp can control the car through sending and receiving data from the bluetooth module..
 it has 4 modes it changes the data going through bluetooth by selecting the mode
 
 -Driving Mode: when it selected you can drive the car forward,backward,right,left and stop .. 
