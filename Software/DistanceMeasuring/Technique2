@@ -1,0 +1,7 @@
+Using encoder to calculate how many pulses we make to reach the distance
+for each rev. the encoder count 40 pulse.
+and for each rev. the distance the car take is calculated by its circumference 2*pi*radius 
+so to reach a distance we get it as how many pulses we need to take 
+
+PulsesNeeded = Length *( 40/(2*pi*radius))
+
