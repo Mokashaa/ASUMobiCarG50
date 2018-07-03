@@ -1,0 +1,26 @@
+void Circle() {
+
+  int cir ;
+  int PulsesNeeded;
+  int counter = 0 ;
+  
+    cir = 2*(22.0/7)*100;
+    PulsesNeeded = cir*.9794*2;
+    while (counter < PulsesNeeded){
+    analogWrite(ENA, 135);
+    analogWrite(ENB, 255);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);
+        stateNew = digitalRead(Pin);
+      if (stateNew != stateOld){
+        stateOld = stateNew;
+        counter ++;
+      }
+      Serial.println(counter);
+    }
+    Stop();  
+}
