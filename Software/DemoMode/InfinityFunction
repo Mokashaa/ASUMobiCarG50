@@ -1,0 +1,10 @@
+void Infinity ()
+{
+  HalfCircle(50,1);
+  delay(500);
+  HalfCircle(50,2);
+  delay(500);
+  HalfCircle(50,2);
+  delay(500);
+  HalfCircle(50,1);
+  }
