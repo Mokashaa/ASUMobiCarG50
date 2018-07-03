@@ -1,0 +1,27 @@
+void HalfCircle (int r , int x){
+  int cir ;
+  int PulsesNeeded;
+  int counter = 0 ;
+  if (x == 1)
+  {
+    cir = 2*(22.0/7)*r;
+    PulsesNeeded = cir*.9794*2;
+    while (counter < PulsesNeeded){
+    analogWrite(ENA, 255);
+    analogWrite(ENB, 120);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW); 
+          stateNew = digitalRead(Pin);
+      if (stateNew != stateOld){
+        stateOld = stateNew;
+        counter ++;
+      }
+    }
+    Stop();
+  }
+  
+  }
