@@ -15,24 +15,24 @@ unsigned int reading = 0;
 //pulses counter
 unsigned int counter = 0;
 //Easy driving mode pins:
-int ENA = 5;
-int ENB = 10;
-int RMotor1= 6 ; //RMotor1 is the 1st right motors pin
-int RMotor2 = 7; //RMotor2 is the 2nd right motors pin
-int LMotor1 = 9; //LMotor1 is the 1st left motors pin
-int LMotor2 = 8; //LMotor2 is the 2nd left motors pin
+int ENA = 13;
+int ENB = 8;
+int RMotor1 = 11 ; //RMotor1 is the 1st right motors pin
+int RMotor2 = 12; //RMotor2 is the 2nd right motors pin
+int LMotor1 = 10; //LMotor1 is the 1st left motors pin
+int LMotor2 = 9; //LMotor2 is the 2nd left motors pin
 
 //Ultrasonic Sensor Pins:
-// int TRIGPIN = 3;
-// int ECHOPIN = 5;
-//long distance;
+ int TRIGPIN = 7;
+ int ECHOPIN = 6;
+ long distance;
 
 //Line Follower Pins:
-#define L 11
-#define C 12
-#define R 13
-#define L2 3
-#define R2 4
+#define L 5
+#define C 4
+#define R 3
+#define L2 22
+#define R2 24
 
 //Array of Sensor Values:
 int sensor[3] = {0,0,0};
@@ -55,22 +55,22 @@ void setup() {
   pinMode(RMotor2, OUTPUT);
   pinMode(LMotor1, OUTPUT);
   pinMode(LMotor2, OUTPUT);
-  // pinMode (3, OUTPUT);
-  // pinMode (5, INPUT);
+  pinMode(Pin,INPUT);
+  pinMode (ECHOPIN, INPUT);
+  pinMode (TRIGPIN, OUTPUT);
   //Line Follower Pins:
   pinMode(L, INPUT);
   pinMode(C, INPUT);
   pinMode(R, INPUT);
   pinMode(L2, INPUT);
   pinMode(R2, INPUT);
-
 }
 
 //Prototypes
 void Forward (int i);
-void Left (int i);
+void Left (int i, int n);
 void Right (int i, int n);
-void Backward (int i, int n);
+void Backward (int i);
 void BackwardRight (int i , int n);
 void BackwardLeft (int i , int n);
 void ForwardRight (int i , int n);
@@ -82,59 +82,75 @@ void BackwardDistance (int a);
 void ForwardDistance (int a);
 void RightAngle (int a);
 void LeftAngle (int a);
+void Rectangle();
+void Circle ();
+void HalfCircle (int r , char c);
+void Infinity ();
 
 void loop() {
-  
+
  reading = Reading ();
- Serial.println(reading);
- 
- //PHASE ONE:
- //Ultrasonic Part:
- //distance = checkpath(); //function calculating distance
- //if (distance <= 25) //if distance less than 25 cm move back then stop
- //  {
- //    Backward(255);
- //    delay(100);
- //    Stop();
- //  }
-  
- // else 
- // {
-    if(reading == 54)
-    {      
-      Forward(120);
+
+    //PHASE TWO
+    if(reading == 31)
+    { while(Serial.available() == 0) { 
+      sensor[0]= digitalRead(L);
+      sensor[1]= digitalRead(C);
+      sensor[2]= digitalRead(R);
+      extrasensor[0]= digitalRead(L2);
+      extrasensor[1]= digitalRead(R2);
+      if((sensor[0]==0 && sensor[1]==0 && sensor[2]==1) ||(sensor[0]==0 && sensor[1]==1 && sensor[2]==1) || (sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 1 && extrasensor[1]==0) ) {Right(150,150); delay(20);}
+      else if(sensor[0]==0 && sensor[1]==1 && sensor[2]==0) {Forward(170); delay(20); } 
+      else if((sensor[0]==1 && sensor[1]==0 && sensor[2]==0)|| (sensor[0]==1 && sensor[1]==1 && sensor[2]==0) || (sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 0 && extrasensor[1]==1) )  {Left(150,150); delay(20);}
+      else{}
+      }
+    }
+
+    //PHASE ONE:
+    else if(reading == 54)
+    {    
+      // Ultrasonic Part:
+    distance = checkpath(); //function calculating distance
+    if (distance <= 25) //if distance less than 25 cm move back then stop
+     {
+     Backward(255);
+     delay(100);
+     Stop();
+     }  
+      Forward(220);
     }
     else if(reading == 50)
     {
-      Backward(120);
+      Backward(220);
     }
     else if(reading == 60)
-    {
-      Left(100,100);
+    {// Ultrasonic Part:
+     distance = checkpath(); //function calculating distance
+     if (distance <= 25) //if distance less than 25 cm move back then stop
+      {
+     Backward(255);
+     delay(100);
+     Stop();
+      }
+      Left(180,180);
     }
     else if(reading == 66)
     {
-       Right(100,100);
+      // Ultrasonic Part:
+    distance = checkpath(); //function calculating distance
+    if (distance <= 25) //if distance less than 25 cm move back then stop
+      {
+     Backward(255);
+     delay(100);
+     Stop();
+      }
+       Right(180,180);
     }
     else if (reading == 67)
     {
       Stop();
     }
 
-    //PHASE TWO:
-    else if(reading == 31)
-    {
-      sensor[0]= digitalRead(L);
-      sensor[1]= digitalRead(C);
-      sensor[2]= digitalRead(R);
-      extrasensor[0]= digitalRead(L2);
-      extrasensor[1]= digitalRead(R2);
-      if((sensor[0]==0 && sensor[1]==0 && sensor[2]==1) ||(sensor[0]==0 && sensor[1]==1 && sensor[2]==1) || (sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 1 && extrasensor[1]==0) ) {Right(0,95);}
-      else if(sensor[0]==0 && sensor[1]==1 && sensor[2]==0) {Forward(75);} 
-      else if((sensor[0]==1 && sensor[1]==0 && sensor[2]==0)|| (sensor[0]==1 && sensor[1]==1 && sensor[2]==0) || (sensor[0]==0 && sensor[1]==0 && sensor[2]==0 && extrasensor[0] == 0 && extrasensor[1]==1) )  {Left(95,0);}
-      else{}
-    }
-    
     //PHASE THREE:
     else if(reading > 22000 && reading < 23000)
     {
@@ -159,17 +175,21 @@ void loop() {
      unsigned int  value = reading - 28000;
      LeftAngle(value);
     }
-    
-  //  else if(reading == 20)
-  //  {
-      //DEMO MODE
-  //  }
+
+    //DEMO MODE
+    else if(reading == 20)
+    {
+       Rectangle ();
+       delay (15000);
+       Circle();
+       delay (15000);
+       Infinity ();
+  }
+
 }
- 
 //Functions:
 void Forward (int i)
 {
-  
     analogWrite(ENA, i);
     analogWrite(ENB, i);
     
@@ -181,8 +201,7 @@ void Forward (int i)
 }
 
 void Backward (int i)
-{
-  
+{ 
     analogWrite(ENA, i);
     analogWrite(ENB, i);
     
@@ -194,8 +213,7 @@ void Backward (int i)
 }
 
 void Left (int i, int n)
-{
-    
+{   
     analogWrite(ENA, i);
     analogWrite(ENB, n);
     
@@ -207,8 +225,7 @@ void Left (int i, int n)
 }
 
 void Right (int i, int n)
-{
-    
+{   
     analogWrite(ENA, i);
     analogWrite(ENB, n);
     
@@ -234,7 +251,7 @@ void Stop ()
 }
 
 //Ultrasonic Function:
-/*long checkpath()
+long checkpath()
 {
   
   digitalWrite(TRIGPIN, LOW);
@@ -247,11 +264,10 @@ void Stop ()
   long distance = duration / 58.8235294 ;
   
   return distance;
-}*/
+}
 
 //Function to get the Value of the Distance/Angle
-int Reading () {
-  
+int Reading() {
   unsigned int value = 0;
   String X = "";
   String Number = "";
@@ -276,65 +292,69 @@ int Reading () {
 }
 
 void ForwardDistance (int a) {
+     
      int PulsesNeeded = a*0.9794*2;
-     PulsesNeeded = ceil(PulsesNeeded);
+     PulsesNeeded = floor(PulsesNeeded);
      counter = 0;
-     while(counter < PulsesNeeded ){
-      Forward(80);
+     while(counter < PulsesNeeded - 4 ){
+      Forward(160);
       stateNew = digitalRead(Pin);
       if (stateNew != stateOld){
         stateOld = stateNew;
         counter ++;
         } 
-      } 
+      }
+      Backward(150);
+      delay(20);
       Stop();
 }
 
-
-void BackwardDistance (int a) {
+void BackwardDistance (int a) 
+{
      int PulsesNeeded = a*0.9794*2;
-     PulsesNeeded = ceil(PulsesNeeded);
+     PulsesNeeded = floor(PulsesNeeded);
      counter = 0;
-     while(counter < PulsesNeeded ){
-      Backward(80);
+     while(counter < PulsesNeeded - 4 ){
+      Backward(160);
       stateNew = digitalRead(Pin);
       if (stateNew != stateOld){
         stateOld = stateNew;
         counter ++;
         } 
       } 
+      Forward(150);
+      delay(20);
       Stop();
 }
 
 void RightAngle (int a) {
-     int zawya = ((22/7)*a)/180;
-     PulsesNeeded = (zawya*9*2)*0.9794*2;
-     PulsesNeeded = ceil(PulsesNeeded);
-     counter = 0;
+     int PulsesNeeded= (a*32)/90;
+     int counter = 0;
      while(counter < PulsesNeeded ){
-      Right(100,100); 
+      Right(170,170); 
       stateNew = digitalRead(Pin);
       if (stateNew != stateOld){
         stateOld = stateNew;
         counter ++;
         }
       } 
+      Left(150,150);
+      delay(20);
       Stop(); 
 }
 
 void LeftAngle (int a) {
-     int zawya = ((22/7)*a)/180;
-     PulsesNeeded = (zawya*9*2)*0.9794*2;
-     PulsesNeeded = ceil(PulsesNeeded);
-     counter = 0;
-     while(counter < PulsesNeeded ){
-      Left(100,100); 
+     int PulsesNeeded= (a*32)/90;
+     int counter = 0;
+     while(counter <  PulsesNeeded){
+      Left(170,170); 
       stateNew = digitalRead(Pin);
       if (stateNew != stateOld){
         stateOld = stateNew;
         counter ++;
         }
       } 
+      Right(150,150);
+      delay(20);
       Stop(); 
 }
-
