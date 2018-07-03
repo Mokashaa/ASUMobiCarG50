@@ -358,3 +358,110 @@ void LeftAngle (int a) {
       delay(20);
       Stop(); 
 }
+void Rectangle() {
+  ForwardDistance(100);
+  delay(1000);
+  LeftAngle(90);
+  delay(1000);
+  ForwardDistance(200);
+  delay(1000);
+  LeftAngle(90);
+  delay(1000);
+  ForwardDistance(200);
+  delay(1000);
+  LeftAngle(90);
+  delay(1000);
+  ForwardDistance(200);
+  delay(1000);
+  LeftAngle(90);
+  delay(1000);
+  ForwardDistance(100);
+ }
+
+void Circle() {
+
+  int cir ;
+  int PulsesNeeded;
+  int counter = 0 ;
+  
+    cir = 2*(22.0/7)*100;
+    PulsesNeeded = cir*.9794*2;
+    while (counter < PulsesNeeded){
+    analogWrite(ENA, 135);
+    analogWrite(ENB, 255);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);
+        stateNew = digitalRead(Pin);
+      if (stateNew != stateOld){
+        stateOld = stateNew;
+        counter ++;
+      }
+      Serial.println(counter);
+    }
+    Stop();  
+}
+
+void HalfCircle (int r , char c){
+  int cir ;
+  int PulsesNeeded;
+  int counter = 0 ;
+  if (c == 'L')
+  {
+    cir = 2*(22.0/7)*r;
+    PulsesNeeded = cir*.9794*2;
+    while (counter < PulsesNeeded){
+    analogWrite(ENA, 255);
+    analogWrite(ENB, 120);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW); 
+          stateNew = digitalRead(Pin);
+      if (stateNew != stateOld){
+        stateOld = stateNew;
+        counter ++;
+      }
+    }
+    Stop();
+  }
+  else if (c == 'R') {
+    
+  r=r-13;
+        cir = 2*(22.0/7)*r;
+    PulsesNeeded=cir*.9794*2;
+    
+    while (counter < PulsesNeeded){
+    analogWrite(ENA, 120);
+    analogWrite(ENB, 255);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW); 
+          stateNew = digitalRead(Pin);
+      if (stateNew != stateOld){
+        stateOld = stateNew;
+        counter ++;
+      }
+    }
+        Stop();
+ }
+}
+  
+void Infinity ()
+{
+  HalfCircle(50,L);
+  delay(500);
+  HalfCircle(50,R);
+  delay(500);
+  HalfCircle(50,R);
+  delay(500);
+  HalfCircle(50,L);
+  }
