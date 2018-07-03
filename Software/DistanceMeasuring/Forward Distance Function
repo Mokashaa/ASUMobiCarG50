@@ -1,0 +1,18 @@
+
+void ForwardDistance (int a) {
+     
+     int PulsesNeeded = a*0.9794*2;
+     PulsesNeeded = floor(PulsesNeeded);
+     counter = 0;
+     while(counter < PulsesNeeded - 4 ){
+      Forward(160);
+      stateNew = digitalRead(Pin);
+      if (stateNew != stateOld){
+        stateOld = stateNew;
+        counter ++;
+        } 
+      }
+      Backward(150);
+      delay(20);
+      Stop();
+}
