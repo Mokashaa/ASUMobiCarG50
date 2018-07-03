@@ -1,0 +1,14 @@
+void Circle() {
+    analogWrite(ENA, 125);
+    analogWrite(ENB, 255);
+    
+    digitalWrite(RMotor1, HIGH);
+    digitalWrite(RMotor2, LOW);  
+    
+    digitalWrite(LMotor1, HIGH);
+    digitalWrite(LMotor2, LOW);
+
+    delay(10500);
+    
+    Stop();  
+}
