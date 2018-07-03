@@ -1,0 +1,15 @@
+void RightAngle (int a) {
+     int PulsesNeeded= (a*32)/90;
+     int counter = 0;
+     while(counter < PulsesNeeded ){
+      Right(170,170); 
+      stateNew = digitalRead(Pin);
+      if (stateNew != stateOld){
+        stateOld = stateNew;
+        counter ++;
+        }
+      } 
+      Left(150,150);
+      delay(20);
+      Stop(); 
+  }
