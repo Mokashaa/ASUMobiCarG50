@@ -84,7 +84,7 @@ void RightAngle (int a);
 void LeftAngle (int a);
 void Rectangle();
 void Circle ();
-void HalfCircle (int r , char c);
+void HalfCircle (int r , int x);
 void Infinity ();
 
 void loop() {
@@ -405,11 +405,11 @@ void Circle() {
     Stop();  
 }
 
-void HalfCircle (int r , char c){
+void HalfCircle (int r , int x){
   int cir ;
   int PulsesNeeded;
   int counter = 0 ;
-  if (c == 'L')
+  if (x == 1)
   {
     cir = 2*(22.0/7)*r;
     PulsesNeeded = cir*.9794*2;
@@ -430,7 +430,7 @@ void HalfCircle (int r , char c){
     }
     Stop();
   }
-  else if (c == 'R') {
+  else if (x == 2) {
     
   r=r-13;
         cir = 2*(22.0/7)*r;
@@ -457,11 +457,11 @@ void HalfCircle (int r , char c){
   
 void Infinity ()
 {
-  HalfCircle(50,L);
+  HalfCircle(50,1);
   delay(500);
-  HalfCircle(50,R);
+  HalfCircle(50,2);
   delay(500);
-  HalfCircle(50,R);
+  HalfCircle(50,2);
   delay(500);
-  HalfCircle(50,L);
+  HalfCircle(50,1);
   }
